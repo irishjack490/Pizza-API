@@ -21,6 +21,7 @@ const auth = require('./lib/auth')
 
 // define server and client ports
 // used for cors and local port declaration
+//react default port is 3000
 const serverDevPort = 8000
 const clientDevPort = 3000
 
