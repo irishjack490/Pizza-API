@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
-require('.app/models/seed');
+const seed = require('./app/models/seed');
 
 // require route files
 const pizzaRoutes = require('./app/routes/pizza_routes')
@@ -36,6 +36,7 @@ mongoose.connect(db, {
 
 // instantiate express application object
 const app = express()
+//seed.populateDatabase();
 
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
@@ -57,6 +58,7 @@ app.use(replaceToken)
 // register passport authentication middleware
 app.use(auth)
 
+
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
@@ -68,7 +70,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(requestLogger)
 
 // register route files
-app.use(exampleRoutes)
+app.use(pizzaRoutes)
 app.use(userRoutes)
 
 // register error handling middleware
