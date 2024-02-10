@@ -4,6 +4,7 @@ const pizzaSchema = new mongoose.Schema(
 	{
 		name: {
 		    type: String,
+			description: String,
 			required: true,
 		},
 		ingredients: [{
@@ -11,7 +12,7 @@ const pizzaSchema = new mongoose.Schema(
 			ref: true,
 		
 		}],
-        vegetarian: {
+        customizable: {
             type: Boolean,
             default: false,
         },
@@ -22,8 +23,8 @@ const pizzaSchema = new mongoose.Schema(
         },
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User',
-			required: true,
+			ref: 'User'
+			
 		}
 
 	});

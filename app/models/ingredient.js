@@ -10,14 +10,10 @@ const ingredientSchema = new mongoose.Schema({
 
     description: {
         type: String
-    },
-
-    createdAt: {
-        type: Date,
-        default: Date.now
     }
+
 
 })
 
-const Ingredient = mongoose.model('Ingredient')
+const Ingredient = mongoose.model('Ingredient', ingredientSchema )
 module.exports = Ingredient;

@@ -3,8 +3,10 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
+require('.app/models/seed');
+
 // require route files
-const exampleRoutes = require('./app/routes/pizza_routes')
+const pizzaRoutes = require('./app/routes/pizza_routes')
 const userRoutes = require('./app/routes/user_routes')
 
 // require middleware

@@ -32,7 +32,7 @@ Pizza is comprised of the following
 			type: String,
 			required: true,
 		},
-        vegetarian: {
+        customizable: {
             type: Boolean,
             default: false,
         }
@@ -48,20 +48,20 @@ Pizza is comprised of the following
 		}
 Ingredient is comprised of the following
 
-	name: {
-        type: String,
-        required: true,
-        unique: true
-    },
+		name: {
+			type: String,
+			required: true,
+			unique: true
+		},
 
-    description: {
-        type: String
-    },
+		description: {
+			type: String
+		},
 
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+		createdAt: {
+			type: Date,
+			default: Date.now
+		}
 
 
 
