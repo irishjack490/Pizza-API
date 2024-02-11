@@ -43,11 +43,30 @@ router.get('/pizzas', (req, res, next) => {
 		.catch(next)
 })
 
+// show route for only the logged in user's pets
+// GET /pizzas/mine
+// requireToken gives us access to req.user.id
+router.get('/pizzas/mine', requireToken, (req, res, next) => {
+	Pizza.find({ owner: req.user.id })
+		.then((pizzas) => {
+			// `pizzas` will be an array of Mongoose documents
+			// we want to convert each one to a POJO, so we use `.map` to
+			// apply `.toObject` to each one
+			return pizzas.map((pizza) => pizza.toObject())
+		})
+		// respond with status 200 and JSON of the pets
+		.then((pizzas) => res.status(200).json({ pizzas: pizzas }))
+		// if an error occurs, pass it to the handler
+		.catch(next)
+})
+
+
 // SHOW
 // GET /pizzas/5a7db6c74d55bc51bdf39793
 router.get('/pizzas/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Pizza.findById(req.params.id)
+		.populate('owner')
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "pizza" JSON
 		.then((pizza) => res.status(200).json({ pizza: pizza.toObject() }))

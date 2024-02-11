@@ -19,7 +19,7 @@ const pizzaSchema = new mongoose.Schema(
 			default: true
         },
 		sides: [sideSchema],
-		
+
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
@@ -34,6 +34,19 @@ const pizzaSchema = new mongoose.Schema(
 
 	);
 	
+
+// we define virtuals outside of the schema
+
+// virtuals allow us to derive additional data from already existing data on our documents
+// when a document is retrieved, and turned into an object or JSON, the virtuals are added and sent along with the response.
+
+// first virtual, 'full title' - this produces a string, that is derived from the name and type fields
+pizzaSchema.virtual('fullTitle').get(function () {
+    return `${this.name}`
+})
+
+
+
 const Pizza = mongoose.model('Pizza', pizzaSchema);
 
 module.exports = Pizza;
