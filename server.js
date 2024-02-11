@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
-const seed = require('./app/models/seed');
+const seed = require('./app/models/seedPizzas');
 
 // require route files
 const pizzaRoutes = require('./app/routes/pizza_routes')

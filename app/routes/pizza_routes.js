@@ -37,7 +37,7 @@ router.get('/pizzas', (req, res, next) => {
 			// apply `.toObject` to each one
 			return pizzas.map((pizza) => pizza.toObject())
 		})
-		// respond with status 200 and JSON of the examples
+		// respond with status 200 and JSON of the pizzas
 		.then((pizzas) => res.status(200).json({ pizzas: pizzas }))
 		// if an error occurs, pass it to the handler
 		.catch(next)
@@ -62,7 +62,7 @@ router.post('/pizzas', requireToken, (req, res, next) => {
 	req.body.pizza.owner = req.user.id
 
 	Pizza.create(req.body.pizza)
-		// respond to succesful `create` with status 201 and JSON of new "example"
+		// respond to succesful `create` with status 201 and JSON of new "pizza"
 		.then((pizza) => {
 			res.status(201).json({ pizza: pizza.toObject() })
 		})
@@ -97,14 +97,14 @@ router.patch('/pizzas/:id', requireToken, removeBlanks, (req, res, next) => {
 
 // DESTROY
 // DELETE /ex/5a7db6c74d55bc51bdf39793
-router.delete('/examples/:id', requireToken, (req, res, next) => {
-	Example.findById(req.params.id)
+router.delete('/pizzas/:id', requireToken, (req, res, next) => {
+	Pizza.findById(req.params.id)
 		.then(handle404)
-		.then((example) => {
-			// throw an error if current user doesn't own `example`
-			requireOwnership(req, example)
-			// delete the example ONLY IF the above didn't throw
-			example.deleteOne()
+		.then((pizza) => {
+			// throw an error if current user doesn't own `pizza`
+			requireOwnership(req, pizza)
+			// delete the pizza ONLY IF the above didn't throw
+			pizza.deleteOne()
 		})
 		// send back 204 and no content if the deletion succeeded
 		.then(() => res.sendStatus(204))
