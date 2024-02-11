@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const sideSchema = require('./side')
 
 const pizzaSchema = new mongoose.Schema(
 	{
@@ -7,27 +8,31 @@ const pizzaSchema = new mongoose.Schema(
 			description: String,
 			required: true,
 		},
-		ingredients: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: true,
+		baseIngredients: {
+			type: String,
+			required: true,
+		},
 		
-		}],
-        customizable: {
+        available: {
             type: Boolean,
-            default: false,
+            required: true,
+			default: true
         },
-        size: {
-            type: String,
-            enum: ['Small', 'Medium', 'Large'],
-            default: 'Medium',
-        },
+		sides: [sideSchema],
+		
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
 			
+		},
+	},
+		{
+			timestamps: true,
+			toObject: { virtuals: true },
+			toJSON: { virtuals: true },
 		}
 
-	});
+	);
 	
 const Pizza = mongoose.model('Pizza', pizzaSchema);
 

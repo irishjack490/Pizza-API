@@ -2,37 +2,35 @@
 //command npm run seed
 const mongoose = require('mongoose')
 const Pizza = require('./pizza')
-const Ingredient = require('./ingredient');
 const db = require('../../config/db')
 
 async function seedPizzas() {
     try {
-        // Fetch ObjectIds of ingredients from the database
-    const ingredients = await Ingredient.find({}, '_id');
+    
     const startPizzas = [
         {
             name: 'Margherita',
-            ingredients: ingredients,
-            customizable: true,
-            size: 'Medium'
+            baseIngredients: 'Dough, Mozarella, Tomatoe Sauce, Basil',
+            available: 'true'
+            
         },
         {
             name: 'Detroit',
-            ingredients: ingredients,
-            customizable: true,
-            size: 'Medium'
+            baseIngredients: 'Dough, Mozarella, Pepperoni',
+            available: 'true',
+            
         },
         {
             name: 'St. Louis',
-            ingredients: ingredients,
-            customizable: true,
-            size: 'Medium'
+            baseIngredients: 'Thin-crust, Provel Cheese',
+            available: 'true'
+        
         },
         {
             name: 'New York Style',
-            ingredients: ingredients,
-            customizable: true,
-            size: 'Medium'
+            baseIngredients: 'Thin-crust, lots of cheese',
+            available: 'true'
+            
         }
     ];
     await Pizza.insertMany(startPizzas);
