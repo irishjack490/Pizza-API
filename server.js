@@ -7,6 +7,7 @@ const seed = require('./app/models/seedPizzas');
 
 // require route files
 const pizzaRoutes = require('./app/routes/pizza_routes')
+const sideRoutes = require('./app/routes/side_routes')
 const userRoutes = require('./app/routes/user_routes')
 
 // require middleware
@@ -72,6 +73,7 @@ app.use(requestLogger)
 // register route files
 app.use(pizzaRoutes)
 app.use(userRoutes)
+app.use(sideRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be

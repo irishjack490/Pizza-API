@@ -18,8 +18,8 @@ const sideSchema = new mongoose.Schema({
     },
     size : {
         type: String,
-        enum: ["small", "medium", "large"],
-        default: "medium"
+        enum: ['small', 'medium', 'large'],
+        default: 'medium'
 
     }
 }, { timestamps: true })

@@ -46,7 +46,7 @@ Pizza is comprised of the following
 			ref: 'User',
 			required: true,
 		}
-Ingredient is comprised of the following
+Side is comprised of the following
 
 		name: {
 			type: String,
@@ -58,10 +58,12 @@ Ingredient is comprised of the following
 			type: String
 		},
 
-		createdAt: {
-			type: Date,
-			default: Date.now
-		}
+		size : {
+        type: String,
+        enum: ['small', 'medium', 'large'],
+        default: 'medium'
+    }
+		
 
 
 
@@ -84,9 +86,10 @@ Ingredient is comprised of the following
 | PATCH  | `/pizzas/:id `         | `pizzas#update`  |
 | DELETE | `/pizzas/:id`          | `pizzas#delete`  |
 
-## Ingredient Routes
+## Sides Routes
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
-| GET    | `/ingredients`         | `ingredients#index`|
-| GET    | `/ingredients/:id`     | `ingredient#show`  |
+| POST   | `/sides/:pizzaId`      | `sides#create`    |
+| PATCH  | `/pizzas/:pizzaId/:sideId` | `sides#update`  |
+| DELETE | `/sides/:pizzaId/:sideId` | `side#delete`  |
