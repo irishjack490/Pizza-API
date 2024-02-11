@@ -19,27 +19,19 @@ User is comprised of the following
 	
 Pizza is comprised of the following 
 
-        name: {
+        	name: {
 		    type: String,
 			required: true,
 		},
-		ingredients: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: true,
+		baseIngredients: {
+			type: string
+			
 		
-		}],
-        size: {
-			type: String,
-			required: true,
 		},
-        customizable: {
-            type: Boolean,
-            default: false,
-        }
-        size: {
-            type: String,
-            enum: ['Small', 'Medium', 'Large'],
-            default: 'Medium'
+       		available: {
+	 	type: boolean,
+   		ref: true
+        	
         }
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
