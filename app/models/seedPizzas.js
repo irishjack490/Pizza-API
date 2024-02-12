@@ -1,5 +1,6 @@
 //set up initial pizzas in the database
 //command npm run seed
+//removed seedIngredients
 const mongoose = require('mongoose')
 const Pizza = require('./pizza')
 const db = require('../../config/db')
